@@ -29,7 +29,7 @@ public class Main {
         addCodecs(15, "The Economic Code of Ukraine", "2003");
 
         System.out.println("id");
-        System.out.println("---------------------------");
+        System.out.println("--------------------------");
         findCodecsById(1);
         System.out.println("CODECS_NAME");
         System.out.println("---------------------------");
