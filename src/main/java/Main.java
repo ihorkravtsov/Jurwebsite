@@ -4,27 +4,39 @@ import java.sql.*;
  * Created by User on 22.06.2017.
  */
 public class Main {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_db";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/my_db";
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "root";
 
     public static void main(String[] args) {
         addMySQLToClassPath();
-        createDbUserTable();
-        //  addUser(0,"Vasia","Pupkin");
-        //  addUser(1,"Lena","Golovach");
-        // addUser(2,"Dimka","Medvedev");
-        // addUser(3, "Dimka", "Bob");
-        //addUser(4, "Masha", "Medvedev");
+        createDbCodecsTable();
+        addCodecs(0, "The Civil Code of Ukraine", "2003");
+        addCodecs(1, "Civil Procedure Code of Ukraine", "2004");
+        addCodecs(2, "Housing Code of Ukraine", "1983");
+        addCodecs(3, "The Land Code of Ukraine", "2002");
+        addCodecs(4, "The Family Code of Ukraine", "2002");
+        addCodecs(5, "Forest Code of Ukraine", "1994");
+        addCodecs(6, "The Criminal Code of Ukraine", "2001");
+        addCodecs(7, "The Labor Code of Ukraine", "1971");
+        addCodecs(8, "Code of Ukraine on Subsoil", "1994");
+        addCodecs(9, "Water Code of Ukraine", "1995");
+        addCodecs(10, "The Tax Code of Ukraine", "2010");
+        addCodecs(11, "Code of Administrative Judicial Proceedings of Ukraine", "2005");
+        addCodecs(12, "Code of Merchant Shipping of Ukraine", "1995");
+        addCodecs(13, "The Code of Criminal Procedure of Ukraine", "2012");
+        addCodecs(14, "The Economic Procedural Code of Ukraine", "1992");
+        addCodecs(15, "The Economic Code of Ukraine", "2003");
+
         System.out.println("id");
         System.out.println("---------------------------");
-        findUserById(1);
-        System.out.println("name");
+        findCodecsById(1);
+        System.out.println("CODECS_NAME");
         System.out.println("---------------------------");
-        findUserByName("Dimka");
-        System.out.println("last_name");
+        findCodecsByName("The Civil Code of Ukraine");
+        System.out.println("CODECS_YEAR");
         System.out.println("---------------------------");
-        findUserByLastName("Medvedev");
+        findUserByCodecsByYear("2003");
     }
 
     private static Connection getConnection() throws SQLException {
@@ -39,12 +51,12 @@ public class Main {
         }
     }
 
-    private static void createDbUserTable() {
+    private static void createDbCodecsTable() {
         String createTableSQL = "CREATE TABLE IF NOT EXISTS dbuser("
-                + "USER_ID INT(5) NOT NULL, "
-                + "USER_NAME VARCHAR(20) NOT NULL, "
-                + "LAST_NAME VARCHAR(20) NOT NULL, "
-                + "PRIMARY KEY (USER_ID) "
+                + "TABLE_ID INT(16) NOT NULL, "
+                + "CODECS_NAME VARCHAR(40) NOT NULL, "
+                + "CODECS_YEAR VARCHAR(40) NOT NULL, "
+                + "PRIMARY KEY (TABLE_ID) "
                 + ")";
         try (Connection dbConnection = getConnection();
              Statement statement = dbConnection.createStatement()) {
@@ -56,23 +68,23 @@ public class Main {
         }
     }
 
-    private static void addUser(int id, String name, String lastName) {
+    private static void addCodecs(int id, String name, String year) {
         try (Connection dbConnection = getConnection();
              PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO dbuser" +
-                     "(USER_ID, USER_NAME,LAST_NAME ) VALUES (?,?,?)");) {
+                     "(TABLE_ID, CODECS_NAME,CODECS_YEAR ) VALUES (?,?,?)");) {
             int i = 1;
             statement.setInt(i++, id);
             statement.setString(i++, name);
-            statement.setString(i, lastName);
+            statement.setString(i, year);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void findUserById(int id) {
+    private static void findCodecsById(int id) {
         try (Connection dbConnection = getConnection();
-             PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM dbuser WHERE USER_ID =?")) {
+             PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM dbuser WHERE TABLE_ID =?")) {
             int i = 1;
             statement.setInt(i, id);
             ResultSet resultSet = statement.executeQuery();
@@ -82,9 +94,9 @@ public class Main {
         }
     }
 
-    private static void findUserByName(String name) {
+    private static void findCodecsByName(String name) {
         try (Connection dbConnection = getConnection();
-             PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM dbuser WHERE USER_NAME =?")) {
+             PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM dbuser WHERE CODECS_NAME =?")) {
             int i = 1;
             statement.setString(i, name);
             ResultSet resultSet = statement.executeQuery();
@@ -94,11 +106,11 @@ public class Main {
         }
     }
 
-    private static void findUserByLastName(String lastName) {
+    private static void findUserByCodecsByYear(String year) {
         try (Connection dbConnection = getConnection();
-             PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM dbuser WHERE LAST_NAME =?")) {
+             PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM dbuser WHERE CODECS_YEAR =?")) {
             int i = 1;
-            statement.setString(i, lastName);
+            statement.setString(i, year);
             ResultSet resultSet = statement.executeQuery();
             printDataSet(resultSet);
         } catch (SQLException e) {
@@ -108,9 +120,9 @@ public class Main {
 
     private static void printDataSet(ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {
-            System.out.println(resultSet.getInt("USER_ID"));
-            System.out.println(resultSet.getString("USER_NAME"));
-            System.out.println(resultSet.getString("LAST_NAME"));
+            System.out.println(resultSet.getInt("TABLE_ID"));
+            System.out.println(resultSet.getString("CODECS_NAME"));
+            System.out.println(resultSet.getString("CODECS_YEAR"));
             System.out.println("//////////////////////////////////////////////////////");
         }
     }
