@@ -16,4 +16,11 @@ public interface UserDAO {
     public void deleteUser(User user) throws SQLException;
 
     public List<User> getAllUsers() throws SQLException;
+
+    public User getUserByName(String name) throws SQLException;
+
+    public Long getUserIdByName(String name) throws SQLException;
+
+    public User getUserById(long id)throws SQLException;
+
 }

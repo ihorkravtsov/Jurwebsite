@@ -13,7 +13,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-        Contacts contact = new Contacts();
+        /*Contacts contact = new Contacts();
         //User u2 = new User();
 
         contact.setPhone("067-577-57-57");
@@ -35,5 +35,15 @@ public class Main {
 
         }
         */
+
+        User user = new User();
+
+        user.setUserName("Petya");
+        user.setEmail("Petya@gmail.com");
+        user.setPassword("5678");
+
+        Factory.getInstance().getUserDAO().addUser(user);
+
+
     }
 }

@@ -12,6 +12,7 @@
     <modules>
         <module>Entity</module>
         <module>WebApp</module>
+        <module>Managers</module>
     </modules>
 
     <name>Jurwebsite</name>

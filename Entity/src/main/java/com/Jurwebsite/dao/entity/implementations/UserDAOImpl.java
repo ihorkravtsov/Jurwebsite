@@ -4,6 +4,7 @@ import com.Jurwebsite.dao.entity.entity.User;
 import com.Jurwebsite.dao.entity.interfaces.UserDAO;
 import com.Jurwebsite.hibernateFactory.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.AbstractList;
@@ -64,5 +65,45 @@ public class UserDAOImpl implements UserDAO {
         }
         return user;
     }
+
+    @Override
+    public User getUserByName(String name) {
+        User user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM User WHERE name =:paramName");
+            query.setParameter("paramName", name);
+            user = (User) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //MUST be dan
+        }
+        return user;
+    }
+
+    public Long getUserIdByName(String name) {
+        Long idUser = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("SELECT idUser FROM User WHERE name =:paramName");
+            query.setParameter("paramName", name);
+            idUser = (Long) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //MUST be dan
+        }
+        return idUser;
+    }
+
+    public User getUserById(long id) {
+        User user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM User WHERE idUser =:paramId");
+            query.setParameter("paramId", id);
+            user = (User) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }
 

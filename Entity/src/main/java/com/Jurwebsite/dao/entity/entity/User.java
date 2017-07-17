@@ -13,8 +13,8 @@ public class User {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "idUser")
+    private long idUser;
 
     @Column(name = "user_name")
     private String userName;
@@ -22,21 +22,25 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     public User() {
 
     }
 
-    public User(String userName, String email) {
+    public User(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
+        this.password = password;
     }
 
-    public int getUserId() {
-        return userId;
+    public long getIdUser() {
+        return idUser;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
     }
 
     public String getUserName() {
@@ -53,5 +57,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
