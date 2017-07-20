@@ -1,6 +1,6 @@
 package com.Jurwebsite.controller;
 
-import com.Jurwebsite.dao.entity.entity.User;
+import com.Jurwebsite.entity.User;
 import com.Jurwebsite.hibernateFactory.Factory;
 import org.json.simple.JSONStreamAware;
 
@@ -22,7 +22,7 @@ public class RegistrationServlet extends APIHandlerServlet.APIRequestHandler {
     }
 
     @Override
-    protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
+    public JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
         String login = request.getParameter("login");
         String email = request.getParameter("email");
         String password = request.getParameter("password");

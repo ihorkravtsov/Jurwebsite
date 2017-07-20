@@ -1,7 +1,7 @@
 package com.Jurwebsite.hibernateFactory;
 
-import com.Jurwebsite.dao.entity.implementations.*;
-import com.Jurwebsite.dao.entity.interfaces.*;
+import com.Jurwebsite.implementations.*;
+import com.Jurwebsite.interfaces.*;
 
 /**
  * Created by User on 06.07.2017.
@@ -12,6 +12,7 @@ public class Factory {
     private static Services_and_PricesDAO services_and_pricesDAO = null;
     private static Useful_LinksDAO useful_linksDAO = null;
     private static UserDAO userDAO = null;
+    private static MessageDAO messageDAO = null;
 
     private static Factory instance = null;
 
@@ -55,6 +56,13 @@ public class Factory {
             userDAO = new UserDAOImpl();
         }
         return userDAO;
+    }
+
+    public MessageDAO getMessageDAO(){
+        if (messageDAO == null){
+            messageDAO = new MessageDAOImpl();
+        }
+        return messageDAO;
     }
 
 }

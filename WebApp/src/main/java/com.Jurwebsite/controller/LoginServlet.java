@@ -1,9 +1,6 @@
 package com.Jurwebsite.controller;
 
-
-
-
-import com.webJurwebsite.managers.LoginManager;
+import com.Jurwebsite.managers.LoginManager;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONStreamAware;
 

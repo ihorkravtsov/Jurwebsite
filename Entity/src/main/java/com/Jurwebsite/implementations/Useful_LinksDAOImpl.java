@@ -1,7 +1,7 @@
-package com.Jurwebsite.dao.entity.implementations;
+package com.Jurwebsite.implementations;
 
-import com.Jurwebsite.dao.entity.entity.Codecs;
-import com.Jurwebsite.dao.entity.interfaces.CodecsDAO;
+import com.Jurwebsite.entity.Useful_Links;
+import com.Jurwebsite.interfaces.Useful_LinksDAO;
 import com.Jurwebsite.hibernateFactory.HibernateUtil;
 import org.hibernate.Session;
 
@@ -10,13 +10,13 @@ import java.sql.SQLException;
 /**
  * Created by User on 04.07.2017.
  */
-public class CodecsDAOImpl implements CodecsDAO {
+public class Useful_LinksDAOImpl implements Useful_LinksDAO {
 
     @Override
-    public void addCodecs(Codecs codecs) throws SQLException {
+    public void addUseful_Links(Useful_Links useful_links) throws SQLException {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            session.save((codecs));
+            session.save((useful_links));
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -25,10 +25,10 @@ public class CodecsDAOImpl implements CodecsDAO {
     }
 
     @Override
-    public void updateCodecs(Codecs codecs) throws SQLException {
+    public void updateUseful_Links(Useful_Links useful_links) throws SQLException {
         try(Session session = HibernateUtil.getSessionFactory().openSession();){
             session.beginTransaction();
-            session.update(codecs);
+            session.update(useful_links);
             session.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
@@ -36,11 +36,11 @@ public class CodecsDAOImpl implements CodecsDAO {
     }
 
     @Override
-    public void deleteCodecs(Codecs codecs) throws SQLException {
+    public void deleteUseful_Links(Useful_Links useful_links) throws SQLException {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            session.delete((codecs));
+            session.delete((useful_links));
             session.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();

@@ -1,11 +1,9 @@
 package com.Jurwebsite.main;
 
-import com.Jurwebsite.dao.entity.entity.Contacts;
-import com.Jurwebsite.dao.entity.entity.User;
+import com.Jurwebsite.entity.Message;
 import com.Jurwebsite.hibernateFactory.Factory;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by User on 06.07.2017.
@@ -36,13 +34,13 @@ public class Main {
         }
         */
 
-        User user = new User();
+        Message message = new Message();
 
-        user.setUserName("Petya");
-        user.setEmail("Petya@gmail.com");
-        user.setPassword("5678");
+        message.setUserName("Igor");
+        message.setEmail("Igor@gmail.com");
+        message.setMessageText("site site site");
 
-        Factory.getInstance().getUserDAO().addUser(user);
+        Factory.getInstance().getMessageDAO().addMessage(message);
 
 
     }

@@ -1,6 +1,6 @@
-package com.Jurwebsite.dao.entity.interfaces;
+package com.Jurwebsite.interfaces;
 
-import com.Jurwebsite.dao.entity.entity.Codecs;
+import com.Jurwebsite.entity.Codecs;
 
 import java.sql.SQLException;
 

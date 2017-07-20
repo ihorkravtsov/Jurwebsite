@@ -1,6 +1,6 @@
-package com.webJurwebsite.managers;
+package com.Jurwebsite.managers;
 
-import com.Jurwebsite.dao.entity.entity.User;
+import com.Jurwebsite.entity.User;
 import com.Jurwebsite.hibernateFactory.Factory;
 
 import java.sql.SQLException;

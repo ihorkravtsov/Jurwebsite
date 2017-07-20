@@ -1,4 +1,4 @@
-package com.Jurwebsite.dao.entity.entity;
+package com.Jurwebsite.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
